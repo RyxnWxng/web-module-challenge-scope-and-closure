@@ -30,11 +30,14 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+  The difference between counter1 and counter2 is the let statement in counter2 is outside the scope while counter1 is inside.
   
   2. Which of the two uses a closure? How can you tell?
+  Counter1 uses a closure, we can tell from the return function counter() line
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     you would use counter2 if you need it to be acessed outside the function and use counter1 when its only acessed inside the function
 */
 
 // counter1 code
@@ -64,10 +67,11 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(points){
+    var points = Math.floor(Math.random() * 3);
+      return points
 }
-
+console.log(inning())
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -82,10 +86,20 @@ Use the finalScore function below to do the following:
   "Away": 5
 }
 */ 
-
-function finalScore(/*Code Here*/){
-  /*Code Here*/
-}
+function finalScore(inning, number){
+  var counterH = 0;
+  var counterA = 0;
+    for (let i = 0; i < number; i++){
+      counterH = counterH += inning();
+      counterA = counterA += inning();
+    }
+    var scores = {
+      Home: counterH,
+      Away: counterA,
+    }
+    return scores;
+    }
+console.log(finalScore(inning, 9))
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -101,9 +115,13 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inning) {
+  return {
+    Home: inning(),
+    Away: inning(),
+   }
+ 
+console.log(getInningScore(inning))
 }
 
 
